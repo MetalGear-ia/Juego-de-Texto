@@ -78,6 +78,10 @@ public class Juego {
         boolean escapar = false;
         //*Bucle para que acabe al cualquiera de los 2 morir o el jugador escape escapar= verdadero*/
         while (jugador.estaVivo() && enemigo.estaVivo() && !escapar ) {
+            System.out.println("\n Vida:");
+            System.out.println(jugador.nombre + ": "+jugador.vida_hp+" HP");
+            System.out.println("Vida del " + enemigo.nombre);
+            System.out.println(enemigo.nombre + ": "+enemigo.vida_hp+" HP");
             System.out.println("\n¿Qué quieres hacer?");
             System.out.println("1. Atacar");
             System.out.println("2. Defenderse");
@@ -115,10 +119,10 @@ public class Juego {
                     break;
             }
             //*Estado en cada turno */
-            System.out.println("\n Vida restante:");
-            System.out.println(jugador.nombre + ": "+jugador.vida_hp+" HP" + "\n");
+            System.out.println("\n Vida:");
+            System.out.println(jugador.nombre + ": "+jugador.vida_hp+" HP");
             System.out.println("Vida del " + enemigo.nombre);
-            System.out.println(enemigo.nombre + ": "+enemigo.vida_hp+" HP" + "\n");
+            System.out.println(enemigo.nombre + ": "+enemigo.vida_hp+" HP");
         }
         //*Fuera del bucle, determinar resultado de la pelea */
         if(jugador.estaVivo()){
@@ -136,7 +140,7 @@ public class Juego {
     public static void main(String[] args) throws Exception {
         // *Crear Jugador y Enemigo */
         Jugador jugador = new Jugador("Link", 50, 10, 7);
-        Enemigo esqueleto = new Enemigo("Esqueleto", 40, 80, 5);
+        Enemigo esqueleto = new Enemigo("Esqueleto", 40, 12, 5);
         Scanner scanner = new Scanner(System.in);
         // *Introducción //
         System.out.println("=======================================");
@@ -178,10 +182,10 @@ public class Juego {
             }
         }
         System.out.println("=======================================");
-        System.out.println("A tu alrededor, las sombras se alargan y crujen los huesos de viejas batallas.");
+        System.out.println("A tu alrededor, las sombras se alargan y crujen los huesos de viejas batallas.\n");
         System.out.println("De repente, escuchas un ruido sordo y seco. Frente a ti, entre la penumbra, surge una figura huesuda.");
-        System.out.println("¡Es un " + esqueleto.nombre + ", un guerrero caído del pasado, que ha regresado para proteger este lugar!");
-        System.out.println("Su calavera te observa con vacío en los ojos, pero puedes sentir la amenaza de su presencia.");
+        System.out.println("¡Es un " + esqueleto.nombre + ", un guerrero caído del pasado, que ha regresado para proteger este lugar!\n");
+        System.out.println("Su calavera te observa con vacío en los ojos, pero puedes sentir la amenaza de su presencia.\n");
         System.out.println("¡Prepárate para luchar por tu vida " + jugador.nombre + "!");
         //*Método de batalla */ 
         pelear(jugador, esqueleto);
