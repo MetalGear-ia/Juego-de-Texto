@@ -78,19 +78,24 @@ public class Juego {
         boolean escapar = false;
         //*Bucle para que acabe al cualquiera de los 2 morir o el jugador escape escapar= verdadero*/
         while (jugador.estaVivo() && enemigo.estaVivo() && !escapar ) {
-            System.out.println("\n Vida:");
+               //*Estado en cada turno */
+            System.out.println("=======================================");
+            System.out.println("Vida:");
             System.out.println(jugador.nombre + ": "+jugador.vida_hp+" HP");
-            System.out.println("Vida del " + enemigo.nombre);
+            System.out.println("\nVida del " + enemigo.nombre);
             System.out.println(enemigo.nombre + ": "+enemigo.vida_hp+" HP");
+            System.out.println("=======================================");
             System.out.println("\n¿Qué quieres hacer?");
             System.out.println("1. Atacar");
             System.out.println("2. Defenderse");
             System.out.println("3. Escapar");
             System.out.print("Elige una opción: ");
             int opcion = scannerPelea.nextInt();
+            //*Comandos de acción */
             switch (opcion) {
                 //*Atacar */
                 case 1:
+                System.out.println("=======================================");
                     jugador.atacar(enemigo);
                     if (enemigo.estaVivo()) {
                         enemigo.atacar(jugador);
@@ -99,12 +104,14 @@ public class Juego {
                 
                     //*Defenderse */
                     case 2:
+                    System.out.println("=======================================");
                     jugador.defenderse(enemigo);
                     break;
                     
                     //*Escapar */
                     case 3:
                     escapar = jugador.escapar();
+                    System.out.println("=======================================");
                     if (!escapar && enemigo.estaVivo()){
                         enemigo.atacar(jugador);
                     }else if (escapar){
@@ -116,13 +123,9 @@ public class Juego {
 
                 default:
                 System.out.println("Opcion no válida. Inténtelo de nuevo");
+                System.out.println("=======================================");
                     break;
             }
-            //*Estado en cada turno */
-            System.out.println("\n Vida:");
-            System.out.println(jugador.nombre + ": "+jugador.vida_hp+" HP");
-            System.out.println("Vida del " + enemigo.nombre);
-            System.out.println(enemigo.nombre + ": "+enemigo.vida_hp+" HP");
         }
         //*Fuera del bucle, determinar resultado de la pelea */
         if(jugador.estaVivo()){
