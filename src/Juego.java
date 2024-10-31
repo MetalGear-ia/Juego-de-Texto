@@ -34,8 +34,7 @@ class Jugador extends Personaje {
         super(nombre, vida_hp, fuerza, velocidad);
     }
 
-    // ? Métodos de Jugador, no se podrán usar en la clase padre ya que estos son
-    // sus subclases.
+    // ? Métodos de Jugador, no se podrán usar en la clase padre ya que estos son sus subclases.
     public void atacar(Personaje enemigo) {
         System.out.println(nombre + " ataca a " + enemigo.nombre + " con " + fuerza);
         enemigo.vida_hp -= this.fuerza;
@@ -71,7 +70,7 @@ class Enemigo extends Personaje {
     }
 }
 
-// ! Comienzo del código
+// ! Clase principal
 public class Juego {
     // !Metodo de batalla del juego//
     Scanner opcionPelea = new Scanner(System.in);

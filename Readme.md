@@ -14,10 +14,19 @@
 
 <En el metodo "escapar" se crea un objeto random para que el escape sea aleatorio, luego creo un booleano que define un 50% de probabilidades para que el booleano sea true. Luego uso un if para retornar el valor del boolean escape>
 
+## SubClase Enemigo
+<Hereda los atributos de la clase padre y solo usa el metodo atacar.
+
+## Clase Juego
+<Creo un metodo para cada pelea, esto ayuda a reutilizarlo en batallas futuras.
+
 ## Nota        
 <La clase "Personaje" no es el objeto que se vera afectado por el metodo sino la clase "Personaje", es de la clase "Personaje" para indicar que solo un objeto de clase "Personaje" se aplicara el metodo y enemigo es el objeto al que se le aplicara.
 
 <Métodos de "Jugador", no se podrán usar en la clase padre ya que estos son sus subclases, pero los métodos de la clase padre se podrán usar en esta subclase.>
+
+<Creo los objetos como "Scanner" o "Random" dentro de las clases para que se usen en los métodos y no se generen cada vez que se llame al método.
+
 
 
 
