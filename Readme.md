@@ -20,6 +20,20 @@
 ## Clase Juego
 <Creo un metodo para cada pelea, esto ayuda a reutilizarlo en batallas futuras.
 
+<Metodo Pelear
+<En este método primero creo el boolean escapar que sera "false" esto para que el metodo escapar este definido. luego al usar el metodo escapar sera necesario llamar esta variable.
+
+<Creo un "switch" para que se cree el sistema de pelea atacar, tendrá las opciones: "atacar,defenderse,escapar".
+
+<Dentro del bucle while hace que solo funcione si no hay ningún personaje muerto y si nadie ha escapado. 
+
+<Dentro del while está el switch y fuera del switch  se muestra el estado de los 2, esto para cada turno.
+
+<Si el while no se cumple significa que alguno de los2 personajes murió o escapo el jugador.
+
+<Al final si el personaje esta vivo el juego seguirá sino sale del programa con "System.exit"
+
+
 ## Nota        
 <La clase "Personaje" no es el objeto que se vera afectado por el metodo sino la clase "Personaje", es de la clase "Personaje" para indicar que solo un objeto de clase "Personaje" se aplicara el metodo y enemigo es el objeto al que se le aplicara.
 
