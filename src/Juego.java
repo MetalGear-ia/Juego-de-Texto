@@ -1,144 +1,11 @@
 import java.util.Scanner;
-import java.util.Random;
+import Game.Personajes.Jugador;
+import Game.Personajes.Enemigo;
+import Game.Pelear;
 
-//!! Clase base 
-class Personaje {
-    String nombre;
-    int vida_hp;
-    int fuerza;
-    int velocidad;
-
-    // * Constructor de el objeto personaje */
-    public Personaje(String nombre, int vida_hp, int fuerza, int velocidad) {
-
-        this.nombre = nombre;
-        this.vida_hp = vida_hp;
-        this.fuerza = fuerza;
-        this.velocidad = velocidad;
-    }
-
-    // *Ahora estos métodos funcionaran dentro del padre y sus subclases*/
-    public boolean estaVivo() {
-        return vida_hp > 0;
-    }
-}
-
-// Todo: Subclase "Jugador" con los atributos de "Personaje"//
-class Jugador extends Personaje {
-    // *Constructor */
-    private Random aleatorio = new Random();
-
-    public Jugador(String nombre, int vida_hp, int fuerza, int velocidad) {
-        // *La palabra "super" hace que los atributos de la clase principal se hereden a
-        // *la subclase "Jugador" */
-        super(nombre, vida_hp, fuerza, velocidad);
-    }
-
-    // ? Métodos de Jugador, no se podrán usar en la clase padre ya que estos son sus subclases.
-    public void atacar(Personaje enemigo) {
-        System.out.println(nombre + " ataca a " + enemigo.nombre + " con " + fuerza);
-        enemigo.vida_hp -= this.fuerza;
-    }
-
-    public void defenderse(Personaje enemigo) {
-        System.out.println(nombre + " se defiende de ataque del " + enemigo.nombre + " con su escudo, ataque reducido a la mitad.");
-        int dañoReducido = enemigo.fuerza / 2;
-        this.vida_hp -= dañoReducido;
-    }
-
-    public boolean escapar() {
-        boolean escape = (aleatorio.nextInt(100) + this.velocidad) < 50;
-        if (escape) {
-            System.out.println("Has logrado escapar");
-        } else {
-            System.out.println("no has logrado escapar");
-        }
-        return escape;
-    }
-}
-
-// Todo: Subclase "Enemigo" con los atributos de "Personaje"//
-class Enemigo extends Personaje {
-    // *Constructor */
-    public Enemigo(String nombre, int vida_hp, int fuerza, int velocidad) {
-        super(nombre, vida_hp, fuerza, velocidad);
-    }
-
-    public void atacar(Personaje enemigo) {
-        System.out.println(nombre + " ataca causando  " + fuerza + " de daño.");
-        enemigo.vida_hp -= this.fuerza;
-    }
-}
 
 // ! Clase principal
 public class Juego {
-    // !Metodo de batalla del juego//
-    public static void pelear(Jugador jugador, Enemigo enemigo) {
-        Scanner scannerPelea = new Scanner(System.in);
-        boolean escapar = false;
-        //*Bucle para que acabe al cualquiera de los 2 morir o el jugador escape escapar= verdadero*/
-        while (jugador.estaVivo() && enemigo.estaVivo() && !escapar ) {
-               //*Estado en cada turno */
-            System.out.println("=======================================");
-            System.out.println("Vida:");
-            System.out.println(jugador.nombre + ": "+jugador.vida_hp+" HP");
-            System.out.println("\nVida del " + enemigo.nombre);
-            System.out.println(enemigo.nombre + ": "+enemigo.vida_hp+" HP");
-            System.out.println("=======================================");
-            System.out.println("\n¿Qué quieres hacer?");
-            System.out.println("1. Atacar");
-            System.out.println("2. Defenderse");
-            System.out.println("3. Escapar");
-            System.out.print("Elige una opción: ");
-            int opcion = scannerPelea.nextInt();
-            //*Comandos de acción */
-            switch (opcion) {
-                //*Atacar */
-                case 1:
-                System.out.println("=======================================");
-                    jugador.atacar(enemigo);
-                    if (enemigo.estaVivo()) {
-                        enemigo.atacar(jugador);
-                        }
-                    break;
-                
-                    //*Defenderse */
-                    case 2:
-                    System.out.println("=======================================");
-                    jugador.defenderse(enemigo);
-                    break;
-                    
-                    //*Escapar */
-                    case 3:
-                    escapar = jugador.escapar();
-                    System.out.println("=======================================");
-                    if (!escapar && enemigo.estaVivo()){
-                        enemigo.atacar(jugador);
-                    }else if (escapar){
-                        System.out.println("\nDecidiste escapar, dejando el Cristal de la Luz Eterna atrás en la mazmorra.");
-                        System.out.println("El reino seguirá en la penumbra, pero al menos, vives para pelear otro día.");
-                        System.exit(0);
-                    }
-                    break;
-
-                default:
-                System.out.println("Opcion no válida. Inténtelo de nuevo");
-                System.out.println("=======================================");
-                    break;
-            }
-        }
-        //*Fuera del bucle, determinar resultado de la pelea */
-        if(jugador.estaVivo()){
-            System.out.println("¡Has derrotado al " + enemigo.nombre + "! ¡Felicidades!");
-        }else{
-            System.out.println("\nHas sido derrotado en la mazmorra...");
-            System.out.println("El Cristal de la Luz Eterna permanece en las sombras, y el reino continúa sumido en la oscuridad.");
-            System.out.println("Tal vez, algún día, otro héroe se atreva a intentarlo...");
-            System.out.println("¡Fin del juego!");
-            System.exit(0);
-        }
-        scannerPelea.close();
-    }
 
     public static void main(String[] args) throws Exception {
         // *Crear Jugador y Enemigo */
@@ -158,7 +25,7 @@ public class Juego {
         System.out.println();
         System.out.println("\"Se dice que la mazmorra está llena de trampas y criaturas que custodian el Cristal.\"");
         System.out.println();
-        System.out.println("\"Tú, " + jugador.nombre + ", portador de la Marca del Coraje, eres nuestro último rayo de esperanza.");
+        System.out.println("\"Tú, " + jugador.getNombre() + ", portador de la Marca del Coraje, eres nuestro último rayo de esperanza.");
         System.out.println("Toma tu espada y tu escudo, y adéntrate en las profundidades de la mazmorra.");
         System.out.println("Solo con el Cristal de la Luz Eterna podremos restaurar la paz y disipar las sombras de nuestro mundo.\"");
         System.out.println();
@@ -187,11 +54,11 @@ public class Juego {
         System.out.println("=======================================");
         System.out.println("A tu alrededor, las sombras se alargan y crujen los huesos de viejas batallas.\n");
         System.out.println("De repente, escuchas un ruido sordo y seco. Frente a ti, entre la penumbra, surge una figura huesuda.");
-        System.out.println("¡Es un " + esqueleto.nombre + ", un guerrero caído del pasado, que ha regresado para proteger este lugar!\n");
+        System.out.println("¡Es un " + esqueleto.getNombre() + ", un guerrero caído del pasado, que ha regresado para proteger este lugar!\n");
         System.out.println("Su calavera te observa con vacío en los ojos, pero puedes sentir la amenaza de su presencia.\n");
-        System.out.println("¡Prepárate para luchar por tu vida " + jugador.nombre + "!");
+        System.out.println("¡Prepárate para luchar por tu vida " + jugador.getNombre() + "!");
         //*Método de batalla */ 
-        pelear(jugador, esqueleto);
+        Pelear.pelear(jugador, esqueleto, scanner);
         System.out.println("\n¡Has derrotado al enemigo y has recuperado el Cristal de la Luz Eterna!");
         System.out.println("Sostienes el cristal en tus manos y sientes cómo el poder de la luz regresa al reino.");
         System.out.println("¡La paz ha sido restaurada, y serás recordado como un héroe por generaciones!");

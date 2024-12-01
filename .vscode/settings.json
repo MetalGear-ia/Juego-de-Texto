@@ -5,6 +5,10 @@
         "lib/**/*.jar"
     ],
     "cSpell.words": [
-        "adéntrate"
+        "adéntrate",
+        "Metodo"
+    ],
+    "cSpell.ignoreWords": [
+        "metodos"
     ]
 }
