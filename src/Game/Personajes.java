@@ -4,14 +4,16 @@ import java.util.Random;
 //!! Clase base 
 public class Personajes {
     String nombre;
+    String clase;
     int vida_hp;
     int fuerza;
     int velocidad;
 
     // * Constructor de el objeto personaje */
-    public Personajes(String nombre, int vida_hp, int fuerza, int velocidad) {
+    public Personajes(String nombre, String clase, int vida_hp, int fuerza, int velocidad) {
 
         this.nombre = nombre;
+        this.clase = clase;
         this.vida_hp = vida_hp;
         this.fuerza = fuerza;
         this.velocidad = velocidad;
@@ -32,16 +34,46 @@ public static class Jugador extends Personajes {
     // *Constructor */
     private Random aleatorio = new Random();
 
-    public Jugador(String nombre, int vida_hp, int fuerza, int velocidad) {
+    public Jugador(String nombre, String clase, int vida_hp, int fuerza, int velocidad) {
         // *La palabra "super" hace que los atributos de la clase principal se hereden a
         // *la subclase "Jugador" */
-        super(nombre, vida_hp, fuerza, velocidad);
+        super(nombre, clase, vida_hp, fuerza, velocidad);
     }
 
     // ? Métodos de Jugador, no se podrán usar en la clase padre ya que estos son sus subclases.
     public void atacar(Enemigo enemigo) {
-        System.out.println(nombre + " ataca a " + enemigo.nombre + " con " + fuerza);
-        enemigo.vida_hp -= this.fuerza;
+        if (clase.equalsIgnoreCase("Guerrero")) {
+            System.out.println(nombre + " realiza un golpe poderoso causando " + (fuerza) + " de daño.");
+            enemigo.vida_hp -= fuerza;
+        } else if (clase.equalsIgnoreCase("Mago")) {
+            System.out.println(nombre + " lanza un hechizo causando " + (fuerza) + " de daño mágico.");
+            enemigo.vida_hp -= fuerza;
+        } else {
+            System.out.println(nombre + " realiza un ataque básico causando " + fuerza + " de daño.");
+            enemigo.vida_hp -= fuerza;
+        }
+    }
+
+    public void superAtaque(Enemigo enemigo) {
+        if (clase.equalsIgnoreCase("Guerrero")) {
+            if (enemigo.clase.equalsIgnoreCase("Quimeras") || enemigo.clase.equalsIgnoreCase("Animal") ) {
+                System.out.println(enemigo.nombre + " tiene poca defensa física, "+nombre + " lo golpea " + enemigo.nombre + " causando " + (fuerza * 2) + " de daño.");
+            enemigo.vida_hp -= fuerza * 2;    
+            } else{
+            System.out.println(nombre + " golpea a " + enemigo.nombre + " con todas sus fuerzas causando " + (fuerza * 1.5) + " de daño.");
+            enemigo.vida_hp -= fuerza * 1.5;}
+
+        } else if (clase.equalsIgnoreCase("Mago")) {
+            if (enemigo.clase.equalsIgnoreCase("No muerto") || enemigo.clase.equalsIgnoreCase("Fantasma") ) {
+                System.out.println(enemigo.nombre + " débil a la magia, "+nombre + " lanza un hechizo a " + enemigo.nombre + " causando " + (fuerza * 2) + " de daño.");
+            enemigo.vida_hp -= fuerza * 2;    
+            } else{
+            System.out.println(nombre + " golpea a " + enemigo.nombre + " con todas sus fuerzas causando " + (fuerza * 1.5) + " de daño.");
+            enemigo.vida_hp -= fuerza * 1.5;}
+
+        } else {
+        System.out.println(nombre + " realiza un ataque cargado a " + enemigo.nombre + " causando " + fuerza + " de daño.");
+        }
     }
 
     public void defenderse(Personajes enemigo) {
@@ -64,8 +96,8 @@ public static class Jugador extends Personajes {
 // Todo: Subclase "Enemigo" con los atributos de "Personaje"//
 public static class Enemigo extends Personajes {
     // *Constructor */
-    public Enemigo(String nombre, int vida_hp, int fuerza, int velocidad) {
-        super(nombre, vida_hp, fuerza, velocidad);
+    public Enemigo(String nombre, String clase, int vida_hp, int fuerza, int velocidad) {
+        super(nombre, clase,  vida_hp, fuerza, velocidad);
     }
 
     public void atacar(Personajes enemigo) {
