@@ -9,9 +9,12 @@ public class Juego {
 
     public static void main(String[] args) throws Exception {
         // *Crear Jugador y Enemigo */
-        Jugador jugador = new Jugador("Link", "Mago" , 50, 10, 7);
-        Enemigo esqueleto = new Enemigo("Esqueleto", "Fantasma", 40, 12, 5);
         Scanner scanner = new Scanner(System.in);
+        Enemigo esqueleto = new Enemigo("Esqueleto", "Fantasma", 40, 12, 5);
+        System.out.println("¡Bienvenido, valiente aventurero!");
+        System.out.println("Por favor, ingresa tu nombre: ");
+        String nombreJugador = scanner.nextLine();
+        Jugador jugador = new Jugador(nombreJugador, "Mago" , 50, 10, 7);
         // *Introducción //
         System.out.println("=======================================");
         System.out.println("\"Escucha bien, valiente viajero…");
@@ -25,7 +28,7 @@ public class Juego {
         System.out.println();
         System.out.println("\"Se dice que la mazmorra está llena de trampas y criaturas que custodian el Cristal.\"");
         System.out.println();
-        System.out.println("\"Tú, " + jugador.getNombre() + ", portador de la Marca del Coraje, eres nuestro último rayo de esperanza.");
+        System.out.println("\"Tú, portador de la Marca del Coraje, eres nuestro último rayo de esperanza.");
         System.out.println("Toma tu espada y tu escudo, y adéntrate en las profundidades de la mazmorra.");
         System.out.println("Solo con el Cristal de la Luz Eterna podremos restaurar la paz y disipar las sombras de nuestro mundo.\"");
         System.out.println();
