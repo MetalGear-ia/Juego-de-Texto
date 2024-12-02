@@ -9,8 +9,8 @@ public class Juego {
 
     public static void main(String[] args) throws Exception {
         // *Crear Jugador y Enemigo */
-        Jugador jugador = new Jugador("Link", "Guerrero" , 50, 10, 7);
-        Enemigo esqueleto = new Enemigo("Esqueleto", " No muerto ", 40, 12, 5);
+        Jugador jugador = new Jugador("Link", "Mago" , 50, 10, 7);
+        Enemigo esqueleto = new Enemigo("Esqueleto", "Fantasma", 40, 12, 5);
         Scanner scanner = new Scanner(System.in);
         // *Introducción //
         System.out.println("=======================================");

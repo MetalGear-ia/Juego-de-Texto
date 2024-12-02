@@ -18,8 +18,9 @@ public class Pelear {
             System.out.println("=======================================");
             System.out.println("\n¿Qué quieres hacer?");
             System.out.println("1. Atacar");
-            System.out.println("2. Defenderse");
-            System.out.println("3. Escapar");
+            System.out.println("2. Ataque cargado");
+            System.out.println("3. Defenderse");
+            System.out.println("4. Escapar");
             System.out.print("Elige una opción: ");
             int opcion = scannerPelea.nextInt();
             //*Comandos de acción */
@@ -32,15 +33,24 @@ public class Pelear {
                         enemigo.atacar(jugador);
                         }
                   break;
+
+                  //*Ataque cargado */
+                  case 2:
+                  System.out.println("=======================================");
+                  jugador.superAtaque(jugador, enemigo);
+                  if (enemigo.estaVivo()) {
+                        enemigo.atacar(jugador);
+                        }
+                  break;
             
                     //*Defenderse */
-                  case 2:
+                  case 3:
                   System.out.println("=======================================");
                   jugador.defenderse(enemigo);
                   break;
                   
                     //*Escapar */
-                  case 3:
+                  case 4:
                   escapar = jugador.escapar();
                   System.out.println("=======================================");
                   if (!escapar && enemigo.estaVivo()){

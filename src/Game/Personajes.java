@@ -54,27 +54,25 @@ public static class Jugador extends Personajes {
         }
     }
 
-    public void superAtaque(Enemigo enemigo) {
-        if (clase.equalsIgnoreCase("Guerrero")) {
-            if (enemigo.clase.equalsIgnoreCase("Quimeras") || enemigo.clase.equalsIgnoreCase("Animal") ) {
-                System.out.println(enemigo.nombre + " tiene poca defensa física, "+nombre + " lo golpea " + enemigo.nombre + " causando " + (fuerza * 2) + " de daño.");
-            enemigo.vida_hp -= fuerza * 2;    
-            } else{
-            System.out.println(nombre + " golpea a " + enemigo.nombre + " con todas sus fuerzas causando " + (fuerza * 1.5) + " de daño.");
-            enemigo.vida_hp -= fuerza * 1.5;}
+    public void superAtaque(Jugador jugador, Enemigo enemigo) {
+        double daño;
+        //*Clase Guerrero */
+        if (jugador.clase.equalsIgnoreCase("Guerrero") && enemigo.clase.equalsIgnoreCase("Quimeras") || jugador.clase.equalsIgnoreCase("Guerrero") && enemigo.clase.equalsIgnoreCase("Animal")  ) {
+            daño = fuerza * 2;             
+                System.out.println(enemigo.nombre + " tiene poca defensa física, "+ jugador.nombre + " lo golpea " + enemigo.nombre + " causando " + daño + " de daño.");
 
-        } else if (clase.equalsIgnoreCase("Mago")) {
-            if (enemigo.clase.equalsIgnoreCase("No muerto") || enemigo.clase.equalsIgnoreCase("Fantasma") ) {
-                System.out.println(enemigo.nombre + " débil a la magia, "+nombre + " lanza un hechizo a " + enemigo.nombre + " causando " + (fuerza * 2) + " de daño.");
-            enemigo.vida_hp -= fuerza * 2;    
-            } else{
-            System.out.println(nombre + " golpea a " + enemigo.nombre + " con todas sus fuerzas causando " + (fuerza * 1.5) + " de daño.");
-            enemigo.vida_hp -= fuerza * 1.5;}
-
-        } else {
-        System.out.println(nombre + " realiza un ataque cargado a " + enemigo.nombre + " causando " + fuerza + " de daño.");
-        }
+                //*Clase Mago */
+        } else if (jugador.clase.equalsIgnoreCase("Mago") && enemigo.clase.equalsIgnoreCase("Esqueleto") || jugador.clase.equalsIgnoreCase("Mago") && enemigo.clase.equalsIgnoreCase("Fantasma")  ) {
+            daño = fuerza * 2;
+                System.out.println(enemigo.nombre + " débil a la magia, "+jugador.nombre + " lanza un hechizo a " + enemigo.nombre + " causando " + daño + " de daño.");
+        }    
+        else {
+                daño = fuerza * 1.5;
+                System.out.println(jugador.nombre + " golpea a " + enemigo.nombre + " con todas sus fuerzas causando " + daño + " de daño.");
+            }
+            enemigo.vida_hp -= daño;
     }
+
 
     public void defenderse(Personajes enemigo) {
         System.out.println(nombre + " se defiende de ataque del " + enemigo.nombre + " con su escudo, ataque reducido a la mitad.");
