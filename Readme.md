@@ -12,6 +12,12 @@
 
 <En los parámetros del método son por valor, ya que usamos como referencia la clase Personaje y la referencia enemigo donde cuando lo usemos serán una copia.>
 
+<Las clases serán "Guerrero" y "Mago">
+
+<El guerrero le hará daño a los "Animales" salvajes y a las "Quimeras">
+
+<El mago le hará daño a los "Esqueletos" y al "Fantasma">
+
 <Métodos>
 
 <En el metodo "atacar" se usa como parámetros los de la clase super, lo que hace que el metodo solo funcione con un objeto de clase padre "Personaje" y la palabra "enemigo" es el objeto al que se aplica el metodo.>

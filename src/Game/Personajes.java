@@ -60,7 +60,7 @@ public static class Jugador extends Personajes {
         if (jugador.clase.equalsIgnoreCase("Guerrero") && enemigo.clase.equalsIgnoreCase("Quimeras") || jugador.clase.equalsIgnoreCase("Guerrero") && enemigo.clase.equalsIgnoreCase("Animal")  ) {
             daño = fuerza * 2;             
                 System.out.println(enemigo.nombre + " tiene poca defensa física, "+ jugador.nombre + " lo golpea " + enemigo.nombre + " causando " + daño + " de daño.");
-            
+                
                 //*Clase Mago */
         } else if (jugador.clase.equalsIgnoreCase("Mago") && enemigo.clase.equalsIgnoreCase("Esqueleto") || jugador.clase.equalsIgnoreCase("Mago") && enemigo.clase.equalsIgnoreCase("Fantasma")  ) {
             daño = fuerza * 2;

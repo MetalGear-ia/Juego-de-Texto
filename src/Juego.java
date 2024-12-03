@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.HashMap;
 import Game.Personajes.Jugador;
 import Game.Personajes.Enemigo;
 import Game.Pelear;
@@ -6,15 +7,39 @@ import Game.Pelear;
 
 // ! Clase principal
 public class Juego {
-
     public static void main(String[] args) throws Exception {
         // *Crear Jugador y Enemigo */
+        HashMap<String, String> clasesDisponibles = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
+        String claseJugador;
+        clasesDisponibles.put("1", "Guerrero"); 
+        clasesDisponibles.put("2", "Mago");
+
+        //Todo: Enemigos/
         Enemigo esqueleto = new Enemigo("Esqueleto", "Fantasma", 40, 12, 5);
+
+        // Todo: Jugador/
+        //*Nombre y clase del jugador */
         System.out.println("¡Bienvenido, valiente aventurero!");
         System.out.println("Por favor, ingresa tu nombre: ");
         String nombreJugador = scanner.nextLine();
-        Jugador jugador = new Jugador(nombreJugador, "Mago" , 50, 10, 7);
+
+        System.out.println("Ahora elige la clase de tu personaje, la clase guerrero le hará el doble de daño a los animales salvajes y a las quimeras.");
+        System.out.println("Ahora elige la clase de tu personaje, la clase mago le hará el doble de daño a los Esqueletos y a los Fantasmas.");
+        while (true) {
+        System.out.println("Elige tu clase:");
+        System.out.println("1. Bárbaro");
+        System.out.println("2. Mago");
+        claseJugador = scanner.nextLine();
+        if (claseJugador.equals("1")  || claseJugador.equals("2")){
+            break;
+        }else {
+            System.out.println("Opción no valida. Por favor ingresa 1 o 2.");
+            }
+        }
+        claseJugador = clasesDisponibles.get(claseJugador);
+
+        Jugador jugador = new Jugador(nombreJugador, claseJugador , 50, 10, 7);
         // *Introducción //
         System.out.println("=======================================");
         System.out.println("\"Escucha bien, valiente viajero…");
