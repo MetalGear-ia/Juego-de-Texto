@@ -12,7 +12,7 @@ public class Juego {
     //temporizador (para que halla un intervalo de tiempo entre cada valor que se muestra en consola)
     public static void Temporizador(String mensaje) throws InterruptedException{
         System.out.println(mensaje);
-        Thread.sleep(1500);
+        Thread.sleep(1450);
     }
     public static void main(String[] args) throws Exception {
         // *Crear Jugador y Enemigo */
