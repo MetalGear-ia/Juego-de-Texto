@@ -40,7 +40,7 @@ public class Juego {
         Thread.sleep(1400); // Pausa para que el jugador lea el mensaje
         while (true) {
         Temporizador("Elige tu clase:");
-        Temporizador("1. Bárbaro");
+        Temporizador("1. Guerrero");
         Temporizador("2. Mago");
         claseJugador = scanner.nextLine();
         if (claseJugador.equals("1")  || claseJugador.equals("2")){
