@@ -1,6 +1,5 @@
 package Game;
 import java.util.Random;
-
 //!! Clase base 
 public class Personajes {
     String nombre;
@@ -32,7 +31,6 @@ public class Personajes {
 // Todo: Subclase "Jugador" con los atributos de "Personaje"//
 public static class Jugador extends Personajes {
     // *Constructor */
-    private Random aleatorio = new Random();
 
     public Jugador(String nombre, String clase, int vida_hp, int fuerza, int velocidad) {
         // *La palabra "super" hace que los atributos de la clase principal se hereden a
@@ -42,6 +40,11 @@ public static class Jugador extends Personajes {
 
     // ? Métodos de Jugador, no se podrán usar en la clase padre ya que estos son sus subclases.
     public void atacar(Enemigo enemigo) {
+        try {
+            Thread.sleep(1400);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Importante para conservar la interrupción
+        }
         if (clase.equalsIgnoreCase("Guerrero")) {
             System.out.println(nombre + " realiza un golpe poderoso causando " + (fuerza) + " de daño.");
             enemigo.vida_hp -= fuerza;
@@ -57,6 +60,11 @@ public static class Jugador extends Personajes {
     public void superAtaque(Jugador jugador, Enemigo enemigo) {
         double daño;
         //*Clase Guerrero */
+        try {
+            Thread.sleep(1400);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Importante para conservar la interrupción
+        }
         if (jugador.clase.equalsIgnoreCase("Guerrero") && enemigo.clase.equalsIgnoreCase("Quimeras") || jugador.clase.equalsIgnoreCase("Guerrero") && enemigo.clase.equalsIgnoreCase("Animal")  ) {
             daño = fuerza * 2;             
                 System.out.println(enemigo.nombre + " tiene poca defensa física, "+ jugador.nombre + " lo golpea " + enemigo.nombre + " causando " + daño + " de daño.");
@@ -75,15 +83,25 @@ public static class Jugador extends Personajes {
 
 
     public void defenderse(Personajes enemigo) {
+        try {
+            Thread.sleep(1400);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Importante para conservar la interrupción
+        }
         System.out.println(nombre + " se defiende de ataque del " + enemigo.nombre + " con su escudo, ataque reducido a la mitad.");
         int dañoReducido = enemigo.fuerza / 2;
         this.vida_hp -= dañoReducido;
     }
 
-    public boolean escapar() {
+    public boolean escapar(Random aleatorio) {
         boolean escape = (aleatorio.nextInt(100) + this.velocidad) < 50;
         if (escape) {
             System.out.println("Has logrado escapar");
+            try {
+                Thread.sleep(1400);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt(); // Importante para conservar la interrupción
+        }
         } else {
             System.out.println("no has logrado escapar");
         }
@@ -99,6 +117,11 @@ public static class Enemigo extends Personajes {
     }
 
     public void atacar(Personajes enemigo) {
+        try {
+            Thread.sleep(1400);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Importante para conservar la interrupción
+        }
         System.out.println(nombre + " ataca causando  " + fuerza + " de daño.");
         enemigo.vida_hp -= this.fuerza;
     }
